@@ -17,12 +17,10 @@ public class Main {
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 		
-		//updating objects
+		//Deleting object
 		Veiculos vehicles = manager.find(Veiculos.class, 1L);
 		
-		System.out.println("current value: " + vehicles.getValor());
-		vehicles.setValor(vehicles.getValor().add(new BigDecimal(500)));
-		System.out.println("New value: " + vehicles.getValor());
+		manager.remove(vehicles);
 		
 		tx.commit();
 		manager.close();
