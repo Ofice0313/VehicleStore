@@ -1,4 +1,4 @@
-package com.caleb.lojaveiculos.dominio;
+package com.caleb.lojaveiculos.application;
 
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
