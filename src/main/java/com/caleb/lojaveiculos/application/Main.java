@@ -18,11 +18,11 @@ public class Main {
 		//inserting new objects
 		Veiculos vehicle = new Veiculos();
 		
-		vehicle.setFabricante("Ford");
-		vehicle.setModelo("Fiesta");
-		vehicle.setAnoFabricacao(2020);
-		vehicle.setAnoModelo(2019);
-		vehicle.setValor(new BigDecimal(42000));
+		vehicle.setFabricante("VW");
+		vehicle.setModelo("Gol");
+		vehicle.setAnoFabricacao(2019);
+		vehicle.setAnoModelo(2020);
+		vehicle.setValor(new BigDecimal(35000));
 		manager.persist(vehicle);
 		tx.commit();
 		
