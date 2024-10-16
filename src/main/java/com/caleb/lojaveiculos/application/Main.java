@@ -1,30 +1,29 @@
 package com.caleb.lojaveiculos.application;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 import com.caleb.lojaveiculos.dominio.Veiculos;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
 		EntityManager manager = JpaUtil.getEntityManager();
-		EntityTransaction tx = manager.getTransaction();
-		tx.begin();
 		
-		//inserting new objects
-		Veiculos vehicle = new Veiculos();
+		//Listing objects from Veiculos using JPQL
+		Query query = manager.createQuery("select v from Veiculos v");
+		List<Veiculos> veiculos = query.getResultList();
 		
-		vehicle.setFabricante("VW");
-		vehicle.setModelo("Gol");
-		vehicle.setAnoFabricacao(2019);
-		vehicle.setAnoModelo(2020);
-		vehicle.setValor(new BigDecimal(35000));
-		manager.persist(vehicle);
-		tx.commit();
+		for(Veiculos vehicles: veiculos) {
+			System.out.println(vehicles.getCodigo() + " -"
+					+ vehicles.getFabricante() + " "
+					+ vehicles.getModelo() + ", ano "
+					+ vehicles.getAnoFabricacao() + " por "
+					+ "R$" + vehicles.getValor());
+		}
 		
 		manager.close();
 		JpaUtil.close();
