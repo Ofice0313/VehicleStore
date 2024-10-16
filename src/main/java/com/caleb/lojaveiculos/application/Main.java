@@ -12,10 +12,19 @@ public class Main {
 	public static void main(String[] args) {
 		
 		EntityManager manager = JpaUtil.getEntityManager();
+		EntityTransaction tx = manager.getTransaction();
+		tx.begin();
 		
-		Veiculos vehicle = manager.find(Veiculos.class, 1L);
-		 
-		System.out.println("Vehicle code " + vehicle.getCodigo() + " is a " + vehicle.getModelo());
+		//inserting new objects
+		Veiculos vehicle = new Veiculos();
+		
+		vehicle.setFabricante("Fiat");
+		vehicle.setModelo("Toro");
+		vehicle.setAnoFabricacao(2020);
+		vehicle.setAnoModelo(2020);
+		vehicle.setValor(new BigDecimal(107000));
+		manager.persist(vehicle);
+		tx.commit();
 		
 		manager.close();
 		JpaUtil.close();
